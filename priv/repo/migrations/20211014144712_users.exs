@@ -3,13 +3,15 @@ defmodule NinDB.Repo.Migrations.Users do
 
   def change do
     create table :users do
-      add :username, :string, size: 20
-      add :display_name, :string, size: 20
-      add :password, :string, size: 40
+      add :username, :text
+      add :display_name, :text
+      add :password, :text
       add :profile_picture, :binary
-      add :email, :string, size: 20
+      add :email, :text
       add :birth_date, :date
-      add :description, :string, size: 150
+      add :description, :text
     end
+
+    create unique_index(:users, [:username, :email])
   end
 end
