@@ -2,7 +2,7 @@ defmodule NinDB.Database do
   @moduledoc """
   Module to handle interactions with the Ecto Repo.
   """
-  alias NinDB.{Account, Repo}
+  alias NinDB.{Account, Post, Repo}
   alias Ecto.Changeset
   require Ecto.Query
 
@@ -13,8 +13,12 @@ defmodule NinDB.Database do
     Map.fetch(a, key) == Map.fetch(b, key)
   end
 
-  def put(schema) do
+  def put(schema, Account) do
     Account.changeset(schema)
+    |> Repo.insert()
+  end
+  def put(schema, Post) do
+    Post.changeset(schema)
     |> Repo.insert()
   end
 
