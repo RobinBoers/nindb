@@ -3,6 +3,7 @@ defmodule NinDB.Database do
   Module to handle interactions with the Ecto Repo.
   """
   alias NinDB.{Account, Repo}
+  alias Ecto.Changeset
   require Ecto.Query
 
   def compare(schema, id1, id2, key) do
@@ -21,13 +22,9 @@ defmodule NinDB.Database do
     Repo.get(schema, id)
   end
 
-  def update(schema, id) do
-    Account.changeset(schema)
-    |> Repo.update(id)
-  end
-
-  def get_by_username(schema, username) do
-    Repo.get_by(schema, username: username)
+  def update(schema, key, value) do
+    Changeset.change(schema, [{key, value}])
+    |> Repo.update()
   end
 
   def delete(schema, id) do
@@ -37,6 +34,16 @@ defmodule NinDB.Database do
 
   def list(schema) do
     Repo.all(schema)
+  end
+
+  # Get entries by specific property
+
+  def get_by_username(schema, username) do
+    Repo.get_by(schema, username: username)
+  end
+
+  def get_by_author(schema, id) do
+    Repo.get_by(schema, author_id: id)
   end
 
 end
