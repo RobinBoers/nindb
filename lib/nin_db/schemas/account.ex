@@ -6,6 +6,7 @@ defmodule NinDB.Account do
     field :username, :string, size: 20
     field :display_name, :string, size: 20
     field :password, :string, size: 40
+    field :salt, :string, size: 40
     field :profile_picture, :binary
     field :email, :string, size: 40
     field :birth_date, :date
@@ -19,13 +20,14 @@ defmodule NinDB.Account do
         :username,
         :display_name,
         :password,
+        :salt,
         :profile_picture,
         :email,
         :birth_date,
         :description,
         :liked
       ])
-    |> validate_required([:username, :password, :email])
+    |> validate_required([:username, :password, :email, :salt])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
     |> unique_constraint(:username)

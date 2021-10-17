@@ -6,6 +6,7 @@ defmodule NinDB.Repo.Migrations.Users do
       add :username, :text
       add :display_name, :text
       add :password, :text
+      add :salt, :text
       add :profile_picture, :binary
       add :email, :text
       add :birth_date, :date
