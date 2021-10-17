@@ -10,7 +10,7 @@ defmodule NinDB.Account do
     field :email, :string, size: 40
     field :birth_date, :date
     field :description, :string, size: 150
-    field :liked, {:array, :integer}
+    field :liked, {:array, :integer}, default: []
   end
 
   def changeset(account, params \\ %{}) do
