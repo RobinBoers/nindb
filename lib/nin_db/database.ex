@@ -4,7 +4,7 @@ defmodule NinDB.Database do
   """
   alias NinDB.{Account, Post, Repo}
   alias Ecto.Changeset
-  require Ecto.Query
+  import Ecto.Query
 
   def compare(schema, id1, id2, key) do
     a = Repo.get(schema, id1)
@@ -47,7 +47,6 @@ defmodule NinDB.Database do
   end
 
   def get_by_author(schema, id) do
-    Repo.get_by(schema, author_id: id)
+    schema |> where(author_id: ^id) |> Repo.all()
   end
-
 end
