@@ -27,7 +27,7 @@ defmodule NinDB.Database do
   end
 
   def get_all(schema, limit) do
-    from(e in schema, order_by: [desc: e.inserted_at], limit: ^limit)
+    from(e in schema, order_by: [desc: e.datetime], limit: ^limit)
     |> Repo.all()
   end
 

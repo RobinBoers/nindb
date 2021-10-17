@@ -9,6 +9,7 @@ defmodule NinDB.Post do
     field :image, :binary
     field :like_count, :integer
     field :comments, :map
+    field :datetime, :naive_datetime
   end
 
   def changeset(post, params \\ %{}) do
