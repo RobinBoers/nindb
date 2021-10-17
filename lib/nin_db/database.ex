@@ -26,6 +26,11 @@ defmodule NinDB.Database do
     Repo.get(schema, id)
   end
 
+  def get_all(schema, limit) do
+    from(e in schema, order_by: [desc: e.inserted_at], limit: ^limit)
+    |> Repo.all()
+  end
+
   def update(schema, key, value) do
     Changeset.change(schema, [{key, value}])
     |> Repo.update()
