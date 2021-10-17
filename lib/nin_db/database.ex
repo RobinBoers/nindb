@@ -2,7 +2,7 @@ defmodule NinDB.Database do
   @moduledoc """
   Module to handle interactions with the Ecto Repo.
   """
-  alias NinDB.{Account, Post, Repo}
+  alias NinDB.{Account, Comment, Post, Repo}
   alias Ecto.Changeset
   import Ecto.Query
 
@@ -19,6 +19,10 @@ defmodule NinDB.Database do
   end
   def put(schema, Post) do
     Post.changeset(schema)
+    |> Repo.insert()
+  end
+  def put(schema, Comment) do
+    Comment.changeset(schema)
     |> Repo.insert()
   end
 
@@ -47,11 +51,16 @@ defmodule NinDB.Database do
 
   # Get entries by specific property
 
-  def get_by_username(schema, username) do
+  def get_by(:username, schema, username) do
     Repo.get_by(schema, username: username)
   end
-
-  def get_by_author(schema, id) do
+  def get_by(:author, schema, id) do
     schema |> where(author_id: ^id) |> Repo.all()
+  end
+  def get_by(:parent, schema, id) do
+    schema |> where(parent: ^id) |> Repo.all()
+  end
+  def get_by(:post, schema, id) do
+    schema |> where(post_id: ^id) |> Repo.all()
   end
 end
