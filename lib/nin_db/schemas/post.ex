@@ -8,7 +8,6 @@ defmodule NinDB.Post do
     field :body, :string, size: 250
     field :image, :binary
     field :like_count, :integer
-    field :comments, :map
     field :datetime, :naive_datetime
   end
 

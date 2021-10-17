@@ -22,7 +22,8 @@ defmodule NinDB.Account do
         :profile_picture,
         :email,
         :birth_date,
-        :description
+        :description,
+        :liked
       ])
     |> validate_required([:username, :password, :email])
     |> validate_format(:email, ~r/@/)
