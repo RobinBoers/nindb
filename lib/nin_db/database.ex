@@ -67,4 +67,10 @@ defmodule NinDB.Database do
   def get_by(:post, schema, id) do
     schema |> where(post_id: ^id) |> Repo.all()
   end
+  def get_by(:user_id, schema, id) do
+    schema |> where(user_id: ^id) |> Repo.all()
+  end
+  def get_by(:friend, schema, id) do
+    schema |> where(friend_id: ^id) |> Repo.all()
+  end
 end
