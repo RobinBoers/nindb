@@ -14,6 +14,7 @@ defmodule NinDB.Repo.Migrations.Users do
       add :liked, {:array, :integer}
     end
 
-    create unique_index(:users, [:username, :email])
+    create unique_index(:users, [:username, :id])
+    create unique_index(:users, [:email, :id])
   end
 end
