@@ -34,6 +34,10 @@ defmodule NinDB.Database do
     Repo.get(schema, id)
   end
 
+  def get_all(Account, limit) do
+    from(e in Account, limit: ^limit)
+    |> Repo.all()
+  end
   def get_all(schema, limit) do
     from(e in schema, order_by: [desc: e.datetime], limit: ^limit)
     |> Repo.all()
