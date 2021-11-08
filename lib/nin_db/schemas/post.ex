@@ -7,7 +7,6 @@ defmodule NinDB.Post do
     field :title, :string, size: 70
     field :body, :string, size: 250
     field :image, :binary
-    field :like_count, :integer
     field :datetime, :naive_datetime
   end
 
@@ -17,8 +16,7 @@ defmodule NinDB.Post do
         :author_id,
         :title,
         :body,
-        :image,
-        :like_count
+        :image
       ])
     |> validate_required([:author_id, :title, :body, :like_count])
     |> validate_length(:title, max: 70)
