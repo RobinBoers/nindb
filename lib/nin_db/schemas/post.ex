@@ -18,7 +18,7 @@ defmodule NinDB.Post do
         :body,
         :image
       ])
-    |> validate_required([:author_id, :title, :body, :like_count])
+    |> validate_required([:author_id, :title, :body])
     |> validate_length(:title, max: 70)
     |> validate_length(:body, max: 250)
   end

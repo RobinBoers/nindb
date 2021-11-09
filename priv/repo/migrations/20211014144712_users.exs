@@ -11,7 +11,7 @@ defmodule NinDB.Repo.Migrations.Users do
       add :email, :text
       add :birth_date, :date
       add :description, :text
-      add :liked, {:array, :string}
+      add :feeds, {:array, :string}
     end
 
     create unique_index(:users, [:username])

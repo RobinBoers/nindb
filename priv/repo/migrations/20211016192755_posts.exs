@@ -4,7 +4,6 @@ defmodule NinDB.Repo.Migrations.Posts do
   def change do
     create table :posts do
       add :author_id, :integer
-      add :like_count, :integer
       add :image, :binary
       add :body, :text
       add :title, :text
