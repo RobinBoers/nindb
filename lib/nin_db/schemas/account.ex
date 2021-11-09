@@ -31,6 +31,8 @@ defmodule NinDB.Account do
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
     |> unique_constraint(:username)
+    |> unique_constraint([:username, :email])
+    |> unique_constraint([:email, :username])
     |> validate_format(:username, ~r/^[a-zA-Z0-9]*$/)
     |> validate_length(:password, min: 4)
   end
