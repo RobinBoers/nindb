@@ -11,7 +11,7 @@ defmodule NinDB.Account do
     field :email, :string, size: 40
     field :birth_date, :date
     field :description, :string, size: 150
-    field :feeds, {:array, :string}, default: []
+    field :feeds, {:array, :map}, default: []
   end
 
   def changeset(account, params \\ %{}) do
@@ -25,7 +25,7 @@ defmodule NinDB.Account do
         :email,
         :birth_date,
         :description,
-        :feeds
+        :feeds,
     ])
     |> validate_required([:username, :password, :email, :salt])
     |> validate_format(:email, ~r/@/)
