@@ -11,7 +11,6 @@ defmodule NinDB.Account do
     field :salt, :string, size: 40
     field :profile_picture, :binary
     field :email, NinDB.Encrypted.Binary
-    field :birth_date, :date
     field :description, :string, size: 150
     field :feeds, {:array, :map}, default: []
   end
@@ -25,7 +24,6 @@ defmodule NinDB.Account do
         :salt,
         :profile_picture,
         :email,
-        :birth_date,
         :description,
         :feeds,
     ])
