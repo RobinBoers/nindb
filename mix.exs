@@ -19,6 +19,7 @@ defmodule NinDB.MixProject do
     {:postgrex, ">= 0.0.0"},
     {:jason, "~> 1.2"},
     {:the_big_username_blacklist, "~> 0.1.2"},
+    {:html_sanitize_ex, "~> 1.4"},
     {:cloak, "1.1.1"},
     {:cloak_ecto, "~> 1.2"},
   ]

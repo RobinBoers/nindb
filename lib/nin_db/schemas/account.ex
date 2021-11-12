@@ -33,8 +33,12 @@ defmodule NinDB.Account do
     |> validate_length(:password, min: 4)
     |> downcase_username()
     |> validate_username()
+    |> strip_html(:display_name)
+    |> strip_html(:description)
+    |> strip_html(:profile_picture)
     |> empty_to_nil(:display_name)
     |> empty_to_nil(:description)
+    |> empty_to_nil(:profile_picture)
     |> unique_constraint(:email)
     |> unique_constraint(:username)
     |> unique_constraint([:username, :email])
@@ -52,6 +56,10 @@ defmodule NinDB.Account do
         false -> [{:username, "is not allowed"}]
       end
     end)
+  end
+
+  def strip_html(changeset, key) do
+    update_change(changeset, key, &HtmlSanitizeEx.strip_tags/1)
   end
 
   defp empty_to_nil(changeset, key) do
