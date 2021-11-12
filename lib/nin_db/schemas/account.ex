@@ -10,7 +10,7 @@ defmodule NinDB.Account do
     field :password, :string, size: 40
     field :salt, :string, size: 40
     field :profile_picture, :binary
-    field :email, :string, size: 40
+    field :email, NinDB.Encrypted.Binary
     field :birth_date, :date
     field :description, :string, size: 150
     field :feeds, {:array, :map}, default: []

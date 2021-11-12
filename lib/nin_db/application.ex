@@ -4,7 +4,8 @@ defmodule NinDB.Application do
   use Application
 
   @children [
-    NinDB.Repo
+    NinDB.Repo,
+    NinDB.Vault
   ]
   @opts [strategy: :one_for_one, name: NinDB.Supervisor]
 

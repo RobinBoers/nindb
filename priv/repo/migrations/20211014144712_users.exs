@@ -8,7 +8,7 @@ defmodule NinDB.Repo.Migrations.Users do
       add :password, :text
       add :salt, :text
       add :profile_picture, :binary
-      add :email, :text
+      add :email, :binary
       add :birth_date, :date
       add :description, :text
       add :feeds, {:array, :map}
