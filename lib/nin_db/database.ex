@@ -14,19 +14,19 @@ defmodule NinDB.Database do
   end
 
   def put(schema, Account) do
-    Account.changeset(schema)
+    Account.changeset(%Account{}, schema)
     |> Repo.insert()
   end
   def put(schema, Post) do
-    Post.changeset(schema)
+    Post.changeset(%Post{}, schema)
     |> Repo.insert()
   end
   def put(schema, Comment) do
-    Comment.changeset(schema)
+    Comment.changeset(%Comment{}, schema)
     |> Repo.insert()
   end
   def put(schema, Friend) do
-    Friend.changeset(schema)
+    Friend.changeset(%Friend{}, schema)
     |> Repo.insert()
   end
 

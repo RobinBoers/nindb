@@ -18,5 +18,6 @@ defmodule NinDB.MixProject do
     {:ecto_sql, "~> 3.0"},
     {:postgrex, ">= 0.0.0"},
     {:jason, "~> 1.2"},
+    {:the_big_username_blacklist, "~> 0.1.2"},
   ]
 end
