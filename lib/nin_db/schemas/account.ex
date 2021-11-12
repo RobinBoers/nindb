@@ -33,6 +33,8 @@ defmodule NinDB.Account do
     |> validate_length(:password, min: 4)
     |> downcase_username()
     |> validate_username()
+    |> empty_to_nil(:display_name)
+    |> empty_to_nil(:description)
     |> unique_constraint(:email)
     |> unique_constraint(:username)
     |> unique_constraint([:username, :email])
@@ -50,5 +52,12 @@ defmodule NinDB.Account do
         false -> [{:username, "is not allowed"}]
       end
     end)
+  end
+
+  defp empty_to_nil(changeset, key) do
+    case get_change(changeset, key) do
+      "" -> update_change(changeset, key, nil)
+      _ -> changeset
+    end
   end
 end
