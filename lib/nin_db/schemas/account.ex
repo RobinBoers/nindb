@@ -49,7 +49,7 @@ defmodule NinDB.Account do
     validate_change(changeset, :username, fn _, username ->
       case TheBigUsernameBlacklist.valid?(username, @restricted_usernames) do
         true -> []
-        false -> [{:username, "has invalid format"}]
+        false -> [{:username, "is not allowed"}]
       end
     end)
   end
