@@ -36,9 +36,6 @@ defmodule NinDB.Account do
     |> strip_html(:display_name)
     |> strip_html(:description)
     |> strip_html(:profile_picture)
-    |> empty_to_nil(:display_name)
-    |> empty_to_nil(:description)
-    |> empty_to_nil(:profile_picture)
     |> unique_constraint(:email)
     |> unique_constraint(:username)
     |> unique_constraint([:username, :email])
@@ -59,13 +56,9 @@ defmodule NinDB.Account do
   end
 
   def strip_html(changeset, key) do
-    update_change(changeset, key, &HtmlSanitizeEx.strip_tags/1)
-  end
-
-  defp empty_to_nil(changeset, key) do
     case get_change(changeset, key) do
-      "" -> update_change(changeset, key, nil)
-      _ -> changeset
+      nil -> changeset
+      _ -> update_change(changeset, key, &HtmlSanitizeEx.strip_tags/1)
     end
   end
 end
