@@ -13,6 +13,7 @@ defmodule NinDB.Account do
     field :email, NinDB.Encrypted.Binary
     field :description, :string, size: 150
     field :feeds, {:array, :map}, default: []
+    field :following, {:array, :string}, default: []
   end
 
   def changeset(account, params \\ %{}) do
@@ -26,6 +27,7 @@ defmodule NinDB.Account do
         :email,
         :description,
         :feeds,
+        :following,
     ])
     |> validate_required([:username, :password, :email, :salt])
     |> validate_format(:email, ~r/@/)

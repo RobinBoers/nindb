@@ -11,6 +11,7 @@ defmodule NinDB.Repo.Migrations.Users do
       add :email, :binary
       add :description, :text
       add :feeds, {:array, :map}
+      add :following, {:array, :string}
     end
 
     create unique_index(:users, [:username])
