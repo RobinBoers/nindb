@@ -2,7 +2,7 @@ defmodule NinDB.Database do
   @moduledoc """
   Module to handle interactions with the Ecto Repo.
   """
-  alias NinDB.{Account, Comment, Friend, Post, Repo}
+  alias NinDB.{Account, Comment, Post, Repo}
   import Ecto.Query
 
   def compare(schema, id1, id2, key) do
@@ -22,10 +22,6 @@ defmodule NinDB.Database do
   end
   def put(schema, Comment) do
     Comment.changeset(%Comment{}, schema)
-    |> Repo.insert()
-  end
-  def put(schema, Friend) do
-    Friend.changeset(%Friend{}, schema)
     |> Repo.insert()
   end
 
@@ -52,10 +48,6 @@ defmodule NinDB.Database do
   end
   def update(schema = %Comment{}, key, value) do
     Comment.changeset(schema, %{key => value})
-    |> Repo.update()
-  end
-  def update(schema = %Friend{}, key, value) do
-    Friend.changeset(schema, %{key => value})
     |> Repo.update()
   end
 
