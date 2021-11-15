@@ -16,9 +16,10 @@ defmodule NinDB.Post do
         :author_id,
         :title,
         :body,
-        :image
+        :image,
+        :datetime,
       ])
-    |> validate_required([:author_id, :title, :body])
+    |> validate_required([:author_id, :title, :body, :datetime])
     |> validate_length(:title, max: 70)
     |> validate_length(:body, max: 250)
   end
