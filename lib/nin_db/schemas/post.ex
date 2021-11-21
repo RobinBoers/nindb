@@ -5,7 +5,7 @@ defmodule NinDB.Post do
   schema "posts" do
     field :author_id, :integer
     field :title, :string, size: 70
-    field :body, :string, size: 250
+    field :body, :string
     field :image, :binary
     field :datetime, :naive_datetime
   end
@@ -21,6 +21,5 @@ defmodule NinDB.Post do
       ])
     |> validate_required([:author_id, :title, :body, :datetime])
     |> validate_length(:title, max: 70)
-    |> validate_length(:body, max: 250)
   end
 end
