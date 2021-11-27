@@ -14,6 +14,7 @@ defmodule NinDB.Comment do
   def changeset(post, params \\ %{}) do
     post
     |> cast(params, [
+        :post_id,
         :parent,
         :title,
         :body,
