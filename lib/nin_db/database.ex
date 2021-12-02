@@ -29,6 +29,7 @@ defmodule NinDB.Database do
     Repo.get(schema, id)
   end
 
+  @deprecated "Use list/2 instead"
   def get_all(Account, limit) do
     from(e in Account, limit: ^limit)
     |> Repo.all()
@@ -58,6 +59,15 @@ defmodule NinDB.Database do
 
   def list(schema) do
     Repo.all(schema)
+  end
+
+  def list(Account, limit) do
+    from(e in Account, limit: ^limit)
+    |> Repo.all()
+  end
+  def list(schema, limit) do
+    from(e in schema, order_by: [desc: e.datetime], limit: ^limit)
+    |> Repo.all()
   end
 
   # Get entries by specific property
