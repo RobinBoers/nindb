@@ -4,6 +4,7 @@ defmodule NinDB.Account do
 
   @restricted_usernames ["external", "nindo", "blog"]
 
+  @derive {Jason.Encoder, only: [:username, :display_name, :profile_picture, :description, :feeds, :following]}
   schema "users" do
     field :username, :string, size: 20
     field :display_name, :string, size: 20

@@ -2,6 +2,7 @@ defmodule NinDB.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:post_id, :parent, :title, :body, :author_id, :datetime]}
   schema "comments" do
     field :post_id, :integer
     field :parent, :integer

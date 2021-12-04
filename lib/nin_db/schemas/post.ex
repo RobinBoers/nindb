@@ -2,6 +2,7 @@ defmodule NinDB.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:author_id, :title, :body, :image, :datetime]}
   schema "posts" do
     field :author_id, :integer
     field :title, :string, size: 70
