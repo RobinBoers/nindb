@@ -4,31 +4,40 @@ defmodule NinDB.Account do
 
   @restricted_usernames ["external", "nindo", "blog"]
 
-  @derive {Jason.Encoder, only: [:username, :display_name, :profile_picture, :description, :feeds, :following]}
+  @derive {Jason.Encoder,
+           only: [
+             :id,
+             :username,
+             :display_name,
+             :profile_picture,
+             :description,
+             :feeds,
+             :following
+           ]}
   schema "users" do
-    field :username, :string, size: 20
-    field :display_name, :string, size: 20
-    field :password, :string, size: 40
-    field :salt, :string, size: 40
-    field :profile_picture, :binary
-    field :email, NinDB.Encrypted.Binary
-    field :description, :string, size: 150
-    field :feeds, {:array, :map}, default: []
-    field :following, {:array, :string}, default: []
+    field(:username, :string, size: 20)
+    field(:display_name, :string, size: 20)
+    field(:password, :string, size: 40)
+    field(:salt, :string, size: 40)
+    field(:profile_picture, :binary)
+    field(:email, NinDB.Encrypted.Binary)
+    field(:description, :string, size: 150)
+    field(:feeds, {:array, :map}, default: [])
+    field(:following, {:array, :string}, default: [])
   end
 
   def changeset(account, params \\ %{}) do
     account
     |> cast(params, [
-        :username,
-        :display_name,
-        :password,
-        :salt,
-        :profile_picture,
-        :email,
-        :description,
-        :feeds,
-        :following,
+      :username,
+      :display_name,
+      :password,
+      :salt,
+      :profile_picture,
+      :email,
+      :description,
+      :feeds,
+      :following
     ])
     |> validate_required([:username, :password, :email, :salt])
     |> validate_format(:email, ~r/@/)
