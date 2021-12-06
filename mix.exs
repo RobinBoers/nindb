@@ -6,7 +6,8 @@ defmodule NinDB.MixProject do
     version: "0.1.0",
     elixir: "~> 1.12",
     start_permanent: Mix.env() == :prod,
-    deps: deps()
+    deps: deps(),
+    elixirc_paths: elixirc_paths(Mix.env()),
   ]
 
   def application, do: [
@@ -19,8 +20,12 @@ defmodule NinDB.MixProject do
     {:postgrex, ">= 0.0.0"},
     {:jason, "~> 1.2"},
     {:the_big_username_blacklist, "~> 0.1.2"},
-    {:html_sanitize_ex, "~> 1.4"},
+    {:html_sanitize_ex, git: "git://github.com/RobinBoers/html-sanitize-ex.git"},
     {:cloak, "1.1.1"},
     {:cloak_ecto, "~> 1.2"},
   ]
+
+   # Specifies which paths to compile per environment.
+   defp elixirc_paths(:test), do: ["lib", "test/support"]
+   defp elixirc_paths(_), do: ["lib"]
 end
