@@ -25,6 +25,16 @@ defmodule NinDB.Database do
     |> Repo.insert()
   end
 
+  def validate(schema, Account) do
+    Account.changeset(%Account{}, schema)
+  end
+  def validate(schema, Post) do
+    Post.changeset(%Post{}, schema)
+  end
+  def validate(schema, Comment) do
+    Comment.changeset(%Comment{}, schema)
+  end
+
   def get(schema, id) do
     Repo.get(schema, id)
   end
