@@ -22,7 +22,7 @@ defmodule NinDB.Account do
     field(:profile_picture, :binary)
     field(:email, NinDB.Encrypted.Binary)
     field(:description, :string, size: 150)
-    embeds_many(:sources, NinDB.Source)
+    embeds_many(:sources, NinDB.Source, on_replace: :delete)
     field(:following, {:array, :string}, default: [])
   end
 

@@ -2,8 +2,8 @@ defmodule NinDB.Database do
   @moduledoc """
   Module to handle interactions with the Ecto Repo.
   """
-  alias NinDB.{Account, Comment, Post, Repo}
-  import Ecto.Query
+  alias NinDB.{Account, Comment, Post, Repo, Source}
+  import Ecto.{Query, Changeset}
 
   def compare(schema, id1, id2, key) do
     a = Repo.get(schema, id1)
@@ -49,7 +49,14 @@ defmodule NinDB.Database do
     |> Repo.all()
   end
 
+  def update(schema = %Account{}, key, [%Source{} | _] = value) do
+    schema
+    |> Account.changeset()
+    |> put_embed(key, value)
+    |> Repo.update()
+  end
   def update(schema = %Account{}, key, value) do
+    IO.inspect(value)
     Account.changeset(schema, %{key => value})
     |> Repo.update()
   end
