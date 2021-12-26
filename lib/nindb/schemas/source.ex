@@ -4,7 +4,7 @@ defmodule NinDB.Source do
 
   @primary_key false
   embedded_schema do
-    field :id, :string, default: nil #only here because Phoenix requires it in params
+    field :id, :integer, default: nil # only here because Phoenix requires it in params
     field :feed, :string
     field :icon, :string, default: "/icons/rss.png"
     field :title, :string
