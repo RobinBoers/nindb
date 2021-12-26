@@ -1,5 +1,5 @@
 defmodule NinDB.Vault do
-  use Cloak.Vault, otp_app: :nin_db
+  use Cloak.Vault, otp_app: :nindb
 
   @impl GenServer
   def init(config) do

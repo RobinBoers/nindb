@@ -1,5 +1,5 @@
 defmodule NinDB.Repo do
   use Ecto.Repo,
-    otp_app: :nin_db,
+    otp_app: :nindb,
     adapter: Ecto.Adapters.Postgres
 end
