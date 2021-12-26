@@ -10,7 +10,7 @@ defmodule NinDB.Repo.Migrations.Users do
       add :profile_picture, :binary
       add :email, :binary
       add :description, :text
-      add :feeds, {:array, :map}
+      add :sources, {:array, :map}, default: []
       add :following, {:array, :string}
     end
 
