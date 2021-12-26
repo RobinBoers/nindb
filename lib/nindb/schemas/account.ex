@@ -36,9 +36,9 @@ defmodule NinDB.Account do
       :profile_picture,
       :email,
       :description,
-      :sources,
       :following
     ])
+    |> cast_embed(:sources)
     |> validate_required([:username, :password, :email, :salt])
     |> validate_format(:email, ~r/@/)
     |> validate_format(:username, ~r/^[a-zA-Z0-9]*$/)
