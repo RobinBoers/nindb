@@ -11,7 +11,7 @@ defmodule NinDB.Account do
              :display_name,
              :profile_picture,
              :description,
-             :feeds,
+             :sources,
              :following
            ]}
   schema "users" do
@@ -22,7 +22,7 @@ defmodule NinDB.Account do
     field(:profile_picture, :binary)
     field(:email, NinDB.Encrypted.Binary)
     field(:description, :string, size: 150)
-    field(:feeds, {:array, :map}, default: [])
+    embeds_many(:sources, NinDB.Source)
     field(:following, {:array, :string}, default: [])
   end
 
@@ -36,7 +36,7 @@ defmodule NinDB.Account do
       :profile_picture,
       :email,
       :description,
-      :feeds,
+      :sources,
       :following
     ])
     |> validate_required([:username, :password, :email, :salt])
