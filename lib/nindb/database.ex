@@ -5,13 +5,6 @@ defmodule NinDB.Database do
   alias NinDB.{Account, Comment, Post, Repo, Source}
   import Ecto.{Query, Changeset}
 
-  def compare(schema, id1, id2, key) do
-    a = Repo.get(schema, id1)
-    b = Repo.get(schema, id2)
-
-    Map.fetch(a, key) == Map.fetch(b, key)
-  end
-
   def put(schema, Account) do
     Account.changeset(%Account{}, schema)
     |> Repo.insert()

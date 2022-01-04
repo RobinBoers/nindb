@@ -2,9 +2,17 @@ defmodule NinDBTest do
   use ExUnit.Case
   use NinDB.RepoCase
 
-  doctest NinDB
+  alias NinDB.{Account}
+  alias NinDB.Database
 
-  test "greets the world" do
-    assert NinDB.hello() == :world
+  test "put account" do
+    account = %{
+      username: "robin",
+      email: "something that isn't a emailaddress",
+      password: "password123",
+      salt: "abc",
+    }
+
+    assert Database.put(account, Account) == {:ok, account}
   end
 end
