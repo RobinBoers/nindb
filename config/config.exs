@@ -6,3 +6,5 @@ config :nindb,
 config :nindb, NinDB.Repo,
   database: "nindb",
   hostname: "localhost"
+
+import_config "#{Mix.env()}.exs"
