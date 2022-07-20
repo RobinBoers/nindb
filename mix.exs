@@ -8,6 +8,12 @@ defmodule NinDB.MixProject do
     start_permanent: Mix.env() == :prod,
     deps: deps(),
     elixirc_paths: elixirc_paths(Mix.env()),
+    name: "NinDB",
+    source_url: "https://github.com/RobinBoers/nindo-nindb",
+    docs: [
+      logo: "logo.png",
+      source_ref: "master"
+    ],
   ]
 
   def application, do: [
@@ -23,6 +29,7 @@ defmodule NinDB.MixProject do
     {:html_sanitize_ex, github: "RobinBoers/html-sanitize-ex"},
     {:cloak, "1.1.1"},
     {:cloak_ecto, "~> 1.2"},
+    {:ex_doc, "~> 0.24", only: :dev, runtime: false},
   ]
 
    # Specifies which paths to compile per environment.
