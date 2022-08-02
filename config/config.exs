@@ -5,6 +5,8 @@ config :nindb,
 
 config :nindb, NinDB.Repo,
   database: "nindb",
-  hostname: "localhost"
+  hostname: "localhost",
+  username: "postgres",
+  password: "postgres"
 
 import_config "#{Mix.env()}.exs"
