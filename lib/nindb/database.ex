@@ -9,10 +9,12 @@ defmodule NinDB.Database do
     Account.changeset(%Account{}, schema)
     |> Repo.insert()
   end
+
   def put(schema, Post) do
     Post.changeset(%Post{}, schema)
     |> Repo.insert()
   end
+
   def put(schema, Comment) do
     Comment.changeset(%Comment{}, schema)
     |> Repo.insert()
@@ -21,9 +23,11 @@ defmodule NinDB.Database do
   def validate(schema, Account) do
     Account.changeset(%Account{}, schema)
   end
+
   def validate(schema, Post) do
     Post.changeset(%Post{}, schema)
   end
+
   def validate(schema, Comment) do
     Comment.changeset(%Comment{}, schema)
   end
@@ -37,6 +41,7 @@ defmodule NinDB.Database do
     from(e in Account, limit: ^limit)
     |> Repo.all()
   end
+
   def get_all(schema, limit) do
     from(e in schema, order_by: [desc: e.datetime], limit: ^limit)
     |> Repo.all()
@@ -48,15 +53,19 @@ defmodule NinDB.Database do
     |> put_embed(key, value)
     |> Repo.update()
   end
+
   def update(schema = %Account{}, key, value) do
     IO.inspect(value)
+
     Account.changeset(schema, %{key => value})
     |> Repo.update()
   end
+
   def update(schema = %Post{}, key, value) do
     Post.changeset(schema, %{key => value})
     |> Repo.update()
   end
+
   def update(schema = %Comment{}, key, value) do
     Comment.changeset(schema, %{key => value})
     |> Repo.update()
@@ -75,6 +84,7 @@ defmodule NinDB.Database do
     from(e in Account, limit: ^limit)
     |> Repo.all()
   end
+
   def list(schema, limit) do
     from(e in schema, order_by: [desc: e.datetime], limit: ^limit)
     |> Repo.all()
@@ -85,18 +95,23 @@ defmodule NinDB.Database do
   def get_by(:username, schema, username) do
     Repo.get_by(schema, username: username)
   end
+
   def get_by(:author, schema, id) do
     schema |> where(author_id: ^id) |> Repo.all()
   end
+
   def get_by(:parent, schema, id) do
     schema |> where(parent: ^id) |> Repo.all()
   end
+
   def get_by(:post, schema, id) do
     schema |> where(post_id: ^id) |> Repo.all()
   end
+
   def get_by(:user_id, schema, id) do
     schema |> where(user_id: ^id) |> Repo.all()
   end
+
   def get_by(:friend, schema, id) do
     schema |> where(friend_id: ^id) |> Repo.all()
   end

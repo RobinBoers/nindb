@@ -8,7 +8,6 @@ defmodule NinDB.RepoCase do
       import Ecto
       import Ecto.Query
       import NinDB.RepoCase
-
     end
   end
 

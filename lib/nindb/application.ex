@@ -10,6 +10,5 @@ defmodule NinDB.Application do
   @opts [strategy: :one_for_one, name: NinDB.Supervisor]
 
   @impl true
-  def start(_type, _args), do:
-    Supervisor.start_link(@children, @opts)
+  def start(_type, _args), do: Supervisor.start_link(@children, @opts)
 end

@@ -10,7 +10,7 @@ defmodule NinDBTest do
       username: "robin",
       email: "something that isn't a emailaddress",
       password: "password123",
-      salt: "abc",
+      salt: "abc"
     }
 
     assert Database.put(account, Account) == {:ok, account}
